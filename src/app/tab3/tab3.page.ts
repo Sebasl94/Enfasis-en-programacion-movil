@@ -9,4 +9,10 @@ export class Tab3Page {
 
   constructor() {}
 
+  reporte = {
+    animal: '',
+    nombre: 'TEST',
+    frecuencia: 'Diario',
+  };
+
 }
