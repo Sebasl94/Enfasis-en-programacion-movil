@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Reportes
+      Reportes de Animales
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,17 +13,48 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-item>
-    <ion-label position="floating">Nombre del Animal: </ion-label>
-    <ion-input type="name" [(ngModel)]="reporte.nombre" name="name" required></ion-input>
-  </ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Filtrar Reportes</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
 
-  <ion-item>
-    <ion-label>Generar reporte: </ion-label>
-    <ion-select [(ngModel)]= "reporte.frecuencia" name= "frecuencia">
-      <ion-select-option value="Mensual">Mensual</ion-select-option>
-      <ion-select-option value="Diario">Diario</ion-select-option>
-    </ion-select>
-  </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nombre del Animal</ion-label>
+        <ion-input type="text" [(ngModel)]="reporte.nombre" name="name"></ion-input>
+      </ion-item>
 
+
+      <ion-item>
+        <ion-label>Frecuencia del Reporte</ion-label>
+        <ion-select [(ngModel)]="reporte.frecuencia" name="frecuencia">
+          <ion-select-option value="Mensual">Mensual</ion-select-option>
+          <ion-select-option value="Diario">Diario</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-button expand="block" color="primary" (click)="generarReporte()">
+        Generar Reporte
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card *ngIf="resultados.length > 0">
+    <ion-card-header>
+      <ion-card-title>Resultados del Reporte</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let resultado of resultados">
+          <ion-label>
+            <h3>Nombre: {{ resultado.nombre }}</h3>
+            <p>Raza: {{ resultado.raza }}</p>
+            <p>Alimentación: {{ resultado.alimentacion }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
